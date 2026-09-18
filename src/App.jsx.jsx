@@ -9,7 +9,7 @@ function readPolar(key, fallback = []) {
     const raw = localStorage.getItem(key);
     return raw ? JSON.parse(raw) : fallback;
   } catch {
-    return fallback;
+    return fallback ;
   }
 }
 

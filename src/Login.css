@@ -1,0 +1,159 @@
+.login-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(30, 160, 210, 0.14), transparent 35%),
+    #06111d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.login-card {
+  width: 420px;
+  max-width: 100%;
+  background: #0b1b2a;
+  border: 1px solid #1c3b50;
+  border-radius: 14px;
+  padding: 35px;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.45);
+}
+
+.login-logo {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.login-icon {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 12px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #103b55;
+  border: 1px solid #1d6685;
+  color: #60d9ff;
+  font-size: 30px;
+}
+
+.login-logo h1 {
+  margin: 0;
+  font-size: 23px;
+  letter-spacing: 3px;
+}
+
+.login-logo span {
+  color: #678496;
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+
+.login-heading {
+  margin-bottom: 25px;
+}
+
+.login-heading p {
+  margin: 0 0 6px;
+  color: #4dc9ee;
+  font-size: 9px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.login-heading h2 {
+  margin: 0 0 7px;
+  font-size: 25px;
+}
+
+.login-heading span {
+  color: #71899a;
+  font-size: 11px;
+}
+
+.login-card form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-card label {
+  color: #91a8b8;
+  font-size: 10px;
+  margin-bottom: 7px;
+  margin-top: 15px;
+}
+
+.login-card input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #234258;
+  border-radius: 7px;
+  background: #071521;
+  color: #e8f5fb;
+  outline: none;
+  font-size: 12px;
+}
+
+.login-card input:focus {
+  border-color: #2bb8e5;
+  box-shadow: 0 0 0 2px rgba(43, 184, 229, 0.1);
+}
+
+.login-card input::placeholder {
+  color: #506a7b;
+}
+
+.login-error {
+  margin-top: 12px;
+  padding: 9px;
+  border-radius: 6px;
+  background: #3a1b21;
+  border: 1px solid #71343e;
+  color: #ff8997;
+  font-size: 10px;
+}
+
+.login-button {
+  margin-top: 22px;
+  padding: 13px;
+  border: none;
+  border-radius: 7px;
+  background: #20a9d5;
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background: #28bee9;
+}
+
+.demo-login {
+  margin-top: 22px;
+  padding: 12px;
+  border-radius: 7px;
+  background: #0d2636;
+  border: 1px solid #1b4257;
+}
+
+.demo-login strong {
+  color: #65d6f8;
+  font-size: 10px;
+}
+
+.demo-login p {
+  color: #718a9b;
+  font-size: 9px;
+  margin: 5px 0 0;
+}
+
+.login-footer {
+  text-align: center;
+  margin-top: 25px;
+  color: #4e6878;
+  font-size: 8px;
+  letter-spacing: 1px;
+}

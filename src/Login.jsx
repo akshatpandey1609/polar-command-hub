@@ -6,39 +6,28 @@ function Login({ onLogin }) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
 
-    const users = [
-      {
-        username: "admin@polarcommand.com",
-        password: "Admin@123",
-        role: "Administrator",
-      },
-      {
-        username: "manager@polarcommand.com",
-        password: "Manager@123",
-        role: "Expedition Manager",
-      },
-      {
-        username: "staff@polarcommand.com",
-        password: "Staff@123",
-        role: "Operations Staff",
-      },
-    ];
+    try {
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
 
-    const user = users.find(
-      (item) =>
-        item.username.toLowerCase() === username.toLowerCase() &&
-        item.password === password
-    );
-
-    if (user) {
-      localStorage.setItem("polarUser", JSON.stringify(user));
-      onLogin(user);
-    } else {
-      setError("Invalid username or password.");
+      if (response.ok) {
+        const user = await response.json();
+        localStorage.setItem("polarUser", JSON.stringify(user));
+        onLogin(user);
+      } else {
+        setError("Invalid username or password.");
+      }
+    } catch {
+      setError("An error occurred during login. Please try again.");
     }
   };
 
@@ -84,12 +73,6 @@ function Login({ onLogin }) {
             SIGN IN →
           </button>
         </form>
-
-        <div className="demo-login">
-          <strong>Demo Access</strong>
-          <p>Administrator: admin@polarcommand.com</p>
-          <p>Password: Admin@123</p>
-        </div>
 
         <div className="login-footer">
           AUTHORIZED PERSONNEL ONLY • SIH26062

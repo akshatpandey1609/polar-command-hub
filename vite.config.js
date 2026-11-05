@@ -4,4 +4,9 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   base: '/polar-command-hub/',
   plugins: [react()],
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: './setupTests.js',
+  },
 })

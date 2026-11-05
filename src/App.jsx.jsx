@@ -502,28 +502,22 @@ function StatusRow({ label, value }) {
   );
 }
 function ExpeditionsPage() {
-  const [expeditions, setExpeditions] = useState(() => {
-    const saved = localStorage.getItem("polarExpeditions");
-
-    return saved
-      ? JSON.parse(saved)
-      : [
-          {
-            id: 1,
-            name: "POLAR-2026-A",
-            mission: "Antarctic Research Mission",
-            location: "Antarctica",
-            status: "ACTIVE",
-          },
-          {
-            id: 2,
-            name: "POLAR-2026-B",
-            mission: "Arctic Ocean Survey",
-            location: "Arctic Ocean",
-            status: "TRANSIT",
-          },
-        ];
-  });
+  const expeditions = usePolarData("polarExpeditions", [
+    {
+      id: 1,
+      name: "POLAR-2026-A",
+      mission: "Antarctic Research Mission",
+      location: "Antarctica",
+      status: "ACTIVE",
+    },
+    {
+      id: 2,
+      name: "POLAR-2026-B",
+      mission: "Arctic Ocean Survey",
+      location: "Arctic Ocean",
+      status: "TRANSIT",
+    },
+  ]);
 
   const [showForm, setShowForm] = useState(false);
 
@@ -535,7 +529,6 @@ function ExpeditionsPage() {
   });
 
   function saveExpeditions(data) {
-    setExpeditions(data);
     writePolar("polarExpeditions", data);
   }
 
@@ -723,22 +716,16 @@ function ExpeditionsPage() {
   );
 }
 function RoutePlanningPage() {
-  const [routes, setRoutes] = useState(() => {
-    const saved = localStorage.getItem("polarRoutes");
-
-    return saved
-      ? JSON.parse(saved)
-      : [
-          {
-            id: 1,
-            name: "Antarctic Base Route",
-            start: "McMurdo Station",
-            destination: "South Pole",
-            distance: "1,600 km",
-            status: "ACTIVE",
-          },
-        ];
-  });
+  const routes = usePolarData("polarRoutes", [
+    {
+      id: 1,
+      name: "Antarctic Base Route",
+      start: "McMurdo Station",
+      destination: "South Pole",
+      distance: "1,600 km",
+      status: "ACTIVE",
+    },
+  ]);
 
   const [showForm, setShowForm] = useState(false);
 
@@ -751,8 +738,6 @@ function RoutePlanningPage() {
   });
 
   function saveRoutes(data) {
-    setRoutes(data);
-
     writePolar("polarRoutes", data);
   }
 

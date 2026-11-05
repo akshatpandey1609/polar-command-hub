@@ -4,7 +4,7 @@ import Login from "./Login";
 import "./App.css";
 
 
-function readPolar(key, fallback = []) {
+export function readPolar(key, fallback = []) {
   try {
     const raw = localStorage.getItem(key);
     return raw ? JSON.parse(raw) : fallback;

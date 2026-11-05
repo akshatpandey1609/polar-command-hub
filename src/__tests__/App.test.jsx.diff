@@ -1,0 +1,32 @@
+--- src/__tests__/App.test.jsx
++++ src/__tests__/App.test.jsx
+@@ -1,5 +1,5 @@
+ import { describe, it, expect, beforeEach } from 'vitest';
+-import { seedPolarDemoData } from '../App.jsx';
++import { seedPolarDemoData } from '../App.jsx.jsx';
+
+ describe('seedPolarDemoData', () => {
+   beforeEach(() => {
+@@ -9,10 +9,10 @@
+   it('should populate localStorage with demo data when empty', () => {
+     seedPolarDemoData();
+
+-    expect(localStorage.getItem('polarExpeditions')).toBeDefined();
+-    expect(localStorage.getItem('polarCargo')).toBeDefined();
+-    expect(localStorage.getItem('polarRoutes')).toBeDefined();
+-    expect(localStorage.getItem('polarInventory')).toBeDefined();
++    expect(localStorage.getItem('polarExpeditions')).not.toBeNull();
++    expect(localStorage.getItem('polarCargo')).not.toBeNull();
++    expect(localStorage.getItem('polarRoutes')).not.toBeNull();
++    expect(localStorage.getItem('polarInventory')).not.toBeNull();
+
+     const expeditions = JSON.parse(localStorage.getItem('polarExpeditions'));
+     expect(expeditions.length).toBeGreaterThan(0);
+@@ -29,7 +29,7 @@
+     expect(currentExpeditions).toEqual(existingExpeditions);
+
+     // Other items should still be seeded
+-    expect(localStorage.getItem('polarCargo')).toBeDefined();
++    expect(localStorage.getItem('polarCargo')).not.toBeNull();
+   });
+ });

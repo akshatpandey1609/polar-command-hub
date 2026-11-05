@@ -1,0 +1,12 @@
+--- package.json
++++ package.json
+@@ -6,7 +6,8 @@
+     "dev": "vite",
+     "build": "vite build",
+     "lint": "eslint .",
+-    "preview": "vite preview"
++    "preview": "vite preview",
++    "test": "vitest run"
+   },
+   "dependencies": {
+     "leaflet": "^1.9.4",

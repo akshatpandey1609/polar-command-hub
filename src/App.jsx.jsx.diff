@@ -1,0 +1,11 @@
+--- src/App.jsx.jsx
++++ src/App.jsx.jsx
+@@ -35,7 +35,7 @@
+   return data;
+ }
+
+-function seedPolarDemoData() {
++export function seedPolarDemoData() {
+   const demo = {
+     polarExpeditions: [
+       { id: 1, name: "POLAR-2026-A", mission: "Antarctic Research Mission", location: "Antarctica", status: "ACTIVE" },

@@ -34,7 +34,7 @@ function usePolarData(key, fallback = []) {
   return data;
 }
 
-function seedPolarDemoData() {
+export function seedPolarDemoData() {
   const demo = {
     polarExpeditions: [
       { id: 1, name: "POLAR-2026-A", mission: "Antarctic Research Mission", location: "Antarctica", status: "ACTIVE" },

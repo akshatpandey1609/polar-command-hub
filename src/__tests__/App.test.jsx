@@ -1,0 +1,34 @@
+import { describe, it, expect, beforeEach } from 'vitest';
+import { seedPolarDemoData } from '../App.jsx.jsx';
+
+describe('seedPolarDemoData', () => {
+  beforeEach(() => {
+    localStorage.clear();
+  });
+
+  it('should populate localStorage with demo data when empty', () => {
+    seedPolarDemoData();
+
+    expect(localStorage.getItem('polarExpeditions')).not.toBeNull();
+    expect(localStorage.getItem('polarCargo')).not.toBeNull();
+    expect(localStorage.getItem('polarRoutes')).not.toBeNull();
+    expect(localStorage.getItem('polarInventory')).not.toBeNull();
+
+    const expeditions = JSON.parse(localStorage.getItem('polarExpeditions'));
+    expect(expeditions.length).toBeGreaterThan(0);
+    expect(expeditions[0].name).toBe('POLAR-2026-A');
+  });
+
+  it('should not overwrite existing localStorage data', () => {
+    const existingExpeditions = [{ id: 999, name: "CUSTOM-EXP", mission: "Custom", location: "Unknown", status: "ACTIVE" }];
+    localStorage.setItem('polarExpeditions', JSON.stringify(existingExpeditions));
+
+    seedPolarDemoData();
+
+    const currentExpeditions = JSON.parse(localStorage.getItem('polarExpeditions'));
+    expect(currentExpeditions).toEqual(existingExpeditions);
+
+    // Other items should still be seeded
+    expect(localStorage.getItem('polarCargo')).not.toBeNull();
+  });
+});

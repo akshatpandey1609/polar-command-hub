@@ -1146,11 +1146,14 @@ function ModulePage({ title }) {
     persist(records.map(r => r.id === record.id ? { ...r, status: next } : r));
   }
 
+  const searchLower = search ? search.toLowerCase() : "";
   const filteredRecords = records.filter(record => {
-    const matchesSearch = Object.values(record).some(value =>
-      String(value).toLowerCase().includes(search.toLowerCase())
+    if (statusFilter !== "ALL" && record.status !== statusFilter) return false;
+    if (!searchLower) return true;
+
+    return config.fields.some(([key]) =>
+      String(record[key] ?? "").toLowerCase().includes(searchLower)
     );
-    return matchesSearch && (statusFilter === "ALL" || record.status === statusFilter);
   });
 
   const activeCount = records.filter(r => r.status === config.statuses[0]).length;

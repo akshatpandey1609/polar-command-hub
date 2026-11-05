@@ -35,7 +35,6 @@ function Login({ onLogin }) {
     );
 
     if (user) {
-      localStorage.setItem("polarUser", JSON.stringify(user));
       onLogin(user);
     } else {
       setError("Invalid username or password.");

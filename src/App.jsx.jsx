@@ -273,13 +273,21 @@ function CargoPage() {
     persist(cargo.map(row => row.id === item.id ? { ...row, status: next } : row));
   }
 
-  const filteredCargo = useMemo(() => cargo.filter(item => {
+  const filteredCargo = useMemo(() => {
     const needle = search.toLowerCase();
-    const matchesSearch = [item.cargoName, item.quantity, item.origin, item.destination, item.status]
-      .some(value => String(value || "").toLowerCase().includes(needle));
-    const matchesStatus = statusFilter === "ALL" || item.status === statusFilter;
-    return matchesSearch && matchesStatus;
-  }), [cargo, search, statusFilter]);
+    return cargo.filter(item => {
+      const matchesStatus = statusFilter === "ALL" || item.status === statusFilter;
+      if (!matchesStatus) return false;
+
+      if (!needle) return true;
+
+      return String(item.cargoName || "").toLowerCase().includes(needle) ||
+             String(item.quantity || "").toLowerCase().includes(needle) ||
+             String(item.origin || "").toLowerCase().includes(needle) ||
+             String(item.destination || "").toLowerCase().includes(needle) ||
+             String(item.status || "").toLowerCase().includes(needle);
+    });
+  }, [cargo, search, statusFilter]);
 
   const inTransit = cargo.filter(item => item.status === "IN TRANSIT").length;
   const delivered = cargo.filter(item => item.status === "DELIVERED").length;

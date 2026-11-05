@@ -18,7 +18,7 @@ function writePolar(key, value) {
   window.dispatchEvent(new Event("polar-data-change"));
 }
 
-function usePolarData(key, fallback = []) {
+export function usePolarData(key, fallback = []) {
   const [data, setData] = useState(() => readPolar(key, fallback));
 
   useEffect(() => {
@@ -29,7 +29,7 @@ function usePolarData(key, fallback = []) {
       window.removeEventListener("polar-data-change", refresh);
       window.removeEventListener("storage", refresh);
     };
-  }, [key]);
+  }, [key, fallback]);
 
   return data;
 }

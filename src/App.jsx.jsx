@@ -281,9 +281,12 @@ function CargoPage() {
     return matchesSearch && matchesStatus;
   }), [cargo, search, statusFilter]);
 
-  const inTransit = cargo.filter(item => item.status === "IN TRANSIT").length;
-  const delivered = cargo.filter(item => item.status === "DELIVERED").length;
-  const delayed = cargo.filter(item => item.status === "DELAYED").length;
+  const { inTransit, delivered, delayed } = cargo.reduce((acc, item) => {
+    if (item.status === "IN TRANSIT") acc.inTransit++;
+    else if (item.status === "DELIVERED") acc.delivered++;
+    else if (item.status === "DELAYED") acc.delayed++;
+    return acc;
+  }, { inTransit: 0, delivered: 0, delayed: 0 });
 
   return (
     <div className="content">

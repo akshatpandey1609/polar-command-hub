@@ -35,8 +35,10 @@ function Login({ onLogin }) {
     );
 
     if (user) {
-      localStorage.setItem("polarUser", JSON.stringify(user));
-      onLogin(user);
+      // eslint-disable-next-line no-unused-vars
+      const { password, ...safeUser } = user;
+      localStorage.setItem("polarUser", JSON.stringify(safeUser));
+      onLogin(safeUser);
     } else {
       setError("Invalid username or password.");
     }

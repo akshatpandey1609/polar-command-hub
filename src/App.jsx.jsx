@@ -13,7 +13,7 @@ function readPolar(key, fallback = []) {
   }
 }
 
-function writePolar(key, value) {
+export function writePolar(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
   window.dispatchEvent(new Event("polar-data-change"));
 }
